@@ -14,7 +14,7 @@ h1 {
   text-transform: lowercase;
   letter-spacing: 5px;
   margin-bottom: 20px;
-  text-shadow: white 2px 10px ; /* subtle shadow for depth */
+  text-shadow: mediumpurple 2px 10px ; /* subtle shadow for depth */
 }
 
 p {
