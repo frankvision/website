@@ -1,5 +1,5 @@
 body {
-  background-color: #eb3bd3; /* anthracite grey */
+  background-color: silver; /* anthracite grey */
   font-family: Arial, sans-serif;
   padding: 20px;
   text-align: center;
@@ -10,11 +10,11 @@ h1 {
   font-family: 'Love Ya Like A Sister', sans-serif;
   font-size: 120px;
   font-weight: bold;
-  color: #6b5c69; /* Instagram-style pop */
+  color: seashell; /* Instagram-style pop */
   text-transform: lowercase;
   letter-spacing: 5px;
   margin-bottom: 20px;
-  text-shadow: mediumslateblue 2px 10px ; /* subtle shadow for depth */
+  text-shadow: white 2px 10px ; /* subtle shadow for depth */
 }
 
 p {
