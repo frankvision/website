@@ -1,16 +1,23 @@
 body {
-  background-color: papayawhip;
+  background-color: #2f2f2f; /* anthracite grey */
   font-family: Arial, sans-serif;
   padding: 20px;
-  text-align: center; /* optional: center everything horizontally */
+  text-align: center;
+  color: #f4f4f4; /* light text so it stands out on dark bg */
 }
 
 h1 {
-  font-family: 'Anton', sans-serif; /* modern, bold, blocky font */
-  font-size: 60px;   /* make it big */
-  font-weight: bold;  /* extra bold */
-  color: #ff4d6d;    /* Instagram-style pink/red gradient vibe */
-  text-transform: uppercase; /* optional: make all caps */
-  letter-spacing: 2px;      /* space letters out a bit */
+  font-family: 'Anton', sans-serif;
+  font-size: 60px;
+  font-weight: bold;
+  color: #ff4d6d; /* Instagram-style pop */
+  text-transform: uppercase;
+  letter-spacing: 2px;
   margin-bottom: 20px;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.5); /* subtle shadow for depth */
+}
+
+p {
+  font-size: 18px;
+  line-height: 1.6;
 }
