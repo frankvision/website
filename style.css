@@ -15,8 +15,21 @@ h1 {
   letter-spacing: 5px;
   margin-bottom: 20px;
   text-shadow: 2px 2px 2px khaki,
-    2px 2px 2px limegreen,
-    3px 3px 7px orangered;
+    10px 10px 2px limegreen,
+    20px 20px orangered;
+}
+
+h1:hover {
+  font-family: 'Geo', sans-serif;
+  font-size: 190px;
+  font-weight: bold;
+  color: powderblue; 
+  text-transform: lowercase;
+  letter-spacing: 5px;
+  margin-bottom: 20px;
+  text-shadow: 10px 10px 10px rebeccapurple,
+    10px 10px 2px limegreen,
+    20px 20px orangered;
 }
 
 p {
