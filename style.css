@@ -7,14 +7,14 @@ body {
 }
 
 h1 {
-  font-family: 'Cantata One', sans-serif;
-  font-size: 70px;
+  font-family: 'Love Ya Like A Sister', sans-serif;
+  font-size: 120px;
   font-weight: bold;
   color: #6b5c69; /* Instagram-style pop */
   text-transform: lowercase;
   letter-spacing: 5px;
   margin-bottom: 20px;
-  text-shadow: papayawhip 2px 10px ; /* subtle shadow for depth */
+  text-shadow: mediumslateblue 2px 10px ; /* subtle shadow for depth */
 }
 
 p {
