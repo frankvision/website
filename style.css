@@ -1,4 +1,16 @@
-
 body {
-background-color: papayawhip;
+  background-color: papayawhip;
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  text-align: center; /* optional: center everything horizontally */
+}
+
+h1 {
+  font-family: 'Anton', sans-serif; /* modern, bold, blocky font */
+  font-size: 60px;   /* make it big */
+  font-weight: bold;  /* extra bold */
+  color: #ff4d6d;    /* Instagram-style pink/red gradient vibe */
+  text-transform: uppercase; /* optional: make all caps */
+  letter-spacing: 2px;      /* space letters out a bit */
+  margin-bottom: 20px;
 }
