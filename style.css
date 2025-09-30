@@ -14,9 +14,8 @@ h1 {
   text-transform: lowercase;
   letter-spacing: 5px;
   margin-bottom: 20px;
-  text-shadow: 2px 2px 2px khaki,
-    10px 10px 2px limegreen,
-    -10px -10px 2px lemonchiffon,
+  text-shadow: 10px 10px 2px limegreen,
+    -10px -10px 2px lemonchiffon;
 
 }
 
