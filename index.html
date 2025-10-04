@@ -40,7 +40,13 @@
   <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
 
-  <script>
+  
+</head>
+<body>
+  <div id="gameArea">
+    <div id="box"></div>
+  </div>
+<script>
     // Firebase config
     const firebaseConfig = {
       apiKey: "AIzaSyAhoX1ucK-e-63dw2196v0CZbCVkQhRowM",
@@ -56,12 +62,6 @@
     const app = firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
   </script>
-</head>
-<body>
-  <div id="gameArea">
-    <div id="box"></div>
-  </div>
-
   <script>
     const box = document.getElementById("box");
     const gameArea = document.getElementById("gameArea");
@@ -117,3 +117,4 @@
   </script>
 </body>
 </html>
+
