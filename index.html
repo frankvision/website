@@ -44,4 +44,59 @@
   <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
 
   <script>
-    // Fi
+    // Your Firebase config with the correct database URL
+    const firebaseConfig = {
+      apiKey: "AIzaSyAhoX1ucK-e-63dw2196v0CZbCVkQhRowM",
+      authDomain: "multiplayer-9b383.firebaseapp.com",
+      databaseURL: "https://multiplayer-9b383-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "multiplayer-9b383",
+      storageBucket: "multiplayer-9b383.appspot.com",
+      messagingSenderId: "464835475049",
+      appId: "1:464835475049:web:c0795457efec49a92854f8"
+    };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+  </script>
+</head>
+<body>
+  <div id="gameArea">
+    <div id="box"></div>
+  </div>
+
+  <script>
+    const box = document.getElementById("box");
+    const gameArea = document.getElementById("gameArea");
+    const boxRef = db.ref("dragBox"); // Firebase path
+
+    let dragging = false;
+    let offsetX, offsetY;
+
+    // Initialize box position in Firebase if not set
+    boxRef.once("value", snapshot => {
+      if (!snapshot.exists()) {
+        boxRef.set({ x: 170, y: 170 });
+      }
+    });
+
+    // Update box position locally when Firebase changes
+    boxRef.on("value", snapshot => {
+      const pos = snapshot.val();
+      if (pos) {
+        box.style.left = pos.x + "px";
+        box.style.top = pos.y + "px";
+      }
+    });
+
+    // Mouse events
+    box.addEventListener("mousedown", e => {
+      dragging = true;
+      const rect = box.getBoundingClientRect();
+      offsetX = e.clientX - rect.left;
+      offsetY = e.clientY - rect.top;
+    });
+
+    document.addEventListener("mousemove", e => {
+      if (!dragging) return;
+      const are
