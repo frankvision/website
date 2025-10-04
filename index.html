@@ -2,17 +2,65 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>Simple Drag</title>
+  <title>Multiplayer Drag</title>
+  <style>
+    #box {
+      width: 50px;
+      height: 50px;
+      background: blue;
+      position: absolute;
+      top: 100px;
+      left: 100px;
+      cursor: grab;
+    }
+  </style>
+
+  <!-- Firebase CDN scripts -->
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
 </head>
 <body>
-  <div id="box" style="width:50px; height:50px; background:blue; position:absolute; top:100px; left:100px; cursor:grab;"></div>
+  <div id="box"></div>
 
   <script>
+    // Firebase config
+    const firebaseConfig = {
+      apiKey: "AIzaSyAhoX1ucK-e-63dw2196v0CZbCVkQhRowM",
+      authDomain: "multiplayer-9b383.firebaseapp.com",
+      databaseURL: "https://multiplayer-9b383-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "multiplayer-9b383",
+      storageBucket: "multiplayer-9b383.appspot.com",
+      messagingSenderId: "464835475049",
+      appId: "1:464835475049:web:c0795457efec49a92854f8"
+    };
+
+    // Initialize Firebase
+    const app = firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+    const boxRef = db.ref("dragBox"); // Realtime database path
+
     const box = document.getElementById("box");
     let dragging = false;
     let offsetX = 0;
     let offsetY = 0;
 
+    // Initialize box in Firebase if not already set
+    boxRef.once("value", snapshot => {
+      if (!snapshot.exists()) {
+        boxRef.set({ x: 100, y: 100 });
+      }
+    });
+
+    // Listen for updates from Firebase
+    boxRef.on("value", snapshot => {
+      const pos = snapshot.val();
+      if (pos) {
+        box.style.left = pos.x + "px";
+        box.style.top = pos.y + "px";
+      }
+    });
+
+    // Mouse events for dragging
     box.addEventListener("mousedown", e => {
       dragging = true;
       offsetX = e.clientX - box.offsetLeft;
@@ -22,8 +70,15 @@
 
     document.addEventListener("mousemove", e => {
       if (!dragging) return;
-      box.style.left = (e.clientX - offsetX) + "px";
-      box.style.top = (e.clientY - offsetY) + "px";
+
+      const x = e.clientX - offsetX;
+      const y = e.clientY - offsetY;
+
+      box.style.left = x + "px";
+      box.style.top = y + "px";
+
+      // Update Firebase
+      boxRef.set({ x, y });
     });
 
     document.addEventListener("mouseup", () => {
