@@ -36,18 +36,17 @@
     }
   </style>
 
-  <!-- Firebase SDK -->
+  <!-- Firebase CDN scripts -->
   <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
-
-  
 </head>
 <body>
   <div id="gameArea">
     <div id="box"></div>
   </div>
-<script>
-    // Firebase config
+
+  <script>
+    // Your Firebase config
     const firebaseConfig = {
       apiKey: "AIzaSyAhoX1ucK-e-63dw2196v0CZbCVkQhRowM",
       authDomain: "multiplayer-9b383.firebaseapp.com",
@@ -61,11 +60,11 @@
     // Initialize Firebase
     const app = firebase.initializeApp(firebaseConfig);
     const db = firebase.database();
-  </script>
-  <script>
+
+    // Drag-and-drop logic
     const box = document.getElementById("box");
     const gameArea = document.getElementById("gameArea");
-    const boxRef = db.ref("dragBox"); // Firebase path
+    const boxRef = db.ref("dragBox");
 
     let dragging = false;
     let offsetX, offsetY;
@@ -104,6 +103,7 @@
       x = Math.max(0, Math.min(areaRect.width - box.offsetWidth, x));
       y = Math.max(0, Math.min(areaRect.height - box.offsetHeight, y));
 
+      // Move box locally
       box.style.left = x + "px";
       box.style.top = y + "px";
 
@@ -117,4 +117,3 @@
   </script>
 </body>
 </html>
-
