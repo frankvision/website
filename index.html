@@ -4,11 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Multiplayer Drag & Drop</title>
-  
-  <!-- Your old CSS -->
- 
 
-  <!-- Drag-and-drop specific styles -->
+  <!-- Drag-and-drop CSS -->
   <style>
     /* Container */
     #gameArea {
@@ -26,9 +23,9 @@
       width: 60px;
       height: 60px;
       background: #007bff;
-      position: absolute !important; /* override old CSS */
-      top: 170px !important;
-      left: 170px !important;
+      position: absolute;
+      top: 170px;
+      left: 170px;
       border-radius: 8px;
       cursor: grab;
     }
@@ -39,12 +36,12 @@
     }
   </style>
 
-  <!-- Firebase -->
+  <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-database.js"></script>
 
   <script>
-    // Your Firebase config with the correct database URL
+    // Firebase config
     const firebaseConfig = {
       apiKey: "AIzaSyAhoX1ucK-e-63dw2196v0CZbCVkQhRowM",
       authDomain: "multiplayer-9b383.firebaseapp.com",
@@ -73,14 +70,14 @@
     let dragging = false;
     let offsetX, offsetY;
 
-    // Initialize box position in Firebase if not set
+    // Initialize box in Firebase if not present
     boxRef.once("value", snapshot => {
       if (!snapshot.exists()) {
         boxRef.set({ x: 170, y: 170 });
       }
     });
 
-    // Update box position locally when Firebase changes
+    // Listen to Firebase for updates
     boxRef.on("value", snapshot => {
       const pos = snapshot.val();
       if (pos) {
@@ -99,5 +96,24 @@
 
     document.addEventListener("mousemove", e => {
       if (!dragging) return;
-      const are
+      const areaRect = gameArea.getBoundingClientRect();
+      let x = e.clientX - areaRect.left - offsetX;
+      let y = e.clientY - areaRect.top - offsetY;
 
+      // Keep inside container
+      x = Math.max(0, Math.min(areaRect.width - box.offsetWidth, x));
+      y = Math.max(0, Math.min(areaRect.height - box.offsetHeight, y));
+
+      box.style.left = x + "px";
+      box.style.top = y + "px";
+
+      // Update Firebase
+      boxRef.set({ x, y });
+    });
+
+    document.addEventListener("mouseup", () => {
+      dragging = false;
+    });
+  </script>
+</body>
+</html>
